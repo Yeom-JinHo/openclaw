@@ -108,14 +108,14 @@ export async function resolveChannelIdForUpload(
   }
 
   if (SLACK_CHANNEL_ID_REGEX.test(input)) {
-    return input;
+    return input.toUpperCase();
   }
 
   const parsed = parseSlackChannelMention(input);
 
   const idCandidate = (parsed.id ?? "").trim();
   if (idCandidate && SLACK_CHANNEL_ID_REGEX.test(idCandidate)) {
-    return idCandidate;
+    return idCandidate.toUpperCase();
   }
 
   const nameCandidateRaw = (parsed.name ?? "").trim() || input.replace(/^#/, "").trim();
